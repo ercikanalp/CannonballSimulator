@@ -46,6 +46,15 @@ public class Cannonball
     public double getSpeed() {
         return speed;
     }
+
+    public ArrayList<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(ArrayList<Location> locations) {
+        this.locations = locations;
+    }
+
     public void launch()
     {
         int timeStep = 0;
@@ -53,10 +62,7 @@ public class Cannonball
         {
             updateSpeed(timeStep);
             timeStep++;
-            System.out.println("Speed: "+ speedInX+","+speedInY);
-            System.out.println("Location: "+ currentLocation.getX()+","+currentLocation.getY());
         }
-        System.out.println(speedInY);
     }
 
     private void updateSpeed(int timeStep)

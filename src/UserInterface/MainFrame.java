@@ -13,6 +13,7 @@ public class MainFrame extends JFrame
         this.setLayout(new BorderLayout());
         this.add(new InfoPanel(cannon),BorderLayout.NORTH);
         this.add(new MainPanel(),BorderLayout.CENTER);
+        cannon.launch();
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);

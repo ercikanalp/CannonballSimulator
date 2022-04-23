@@ -1,59 +1,81 @@
 package Calculations;
 
+import java.util.ArrayList;
+
 public class Cannonball
 {
    private int mass;
    private double angle;
    private double speed;
-   private int x;
-   private int y;
+   private double speedInX;
+   private double speedInY;
+   private Location currentLocation;
+   private ArrayList<Location> locations;
+   private final double G = 9.8;
 
     public Cannonball(int mass, double angle, double speed)
     {
         this.mass = mass;
         this.angle = angle;
         this.speed = speed;
+        locations = new ArrayList<>();
+        currentLocation = new Location(0,0);
+        locations.add(currentLocation);
+        speedInX = speed * Math.cos(angle* Math.PI/180);
+        speedInY = speed * Math.sin(angle* Math.PI/180);
     }
 
-    public int getX() {
-        return x;
+    public double getX() {
+        return currentLocation.getX();
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public double getY() {
+        return currentLocation.getY();
     }
 
-    public int getY() {
-        return y;
-    }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 
     public int getMass() {
         return mass;
-    }
-
-    public void setMass(int mass) {
-        this.mass = mass;
     }
 
     public double getAngle() {
         return angle;
     }
 
-    public void setAngle(double angle) {
-        this.angle = angle;
-    }
-
     public double getSpeed() {
         return speed;
     }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public void launch()
+    {
+        int timeStep = 0;
+        while(currentLocation.getY() >= 0)
+        {
+            updateSpeed(timeStep);
+            timeStep++;
+            System.out.println("Speed: "+ speedInX+","+speedInY);
+            System.out.println("Location: "+ currentLocation.getX()+","+currentLocation.getY());
+        }
+        System.out.println(speedInY);
     }
+
+    private void updateSpeed(int timeStep)
+    {
+        this.speedInX = speedInX;
+        this.speedInY = speedInY- G*timeStep;
+        this.speed = Math.sqrt((speedInX*speedInX) + (speedInY*speedInY));
+        updateLocation();
+    }
+
+    private void updateLocation()
+    {
+        double x = currentLocation.getX();
+        double y = currentLocation.getY();
+        this.currentLocation.setX(x + speedInX);
+        this.currentLocation.setY(y + speedInY);
+        locations.add(currentLocation);
+    }
+
 
 
 }

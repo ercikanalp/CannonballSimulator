@@ -9,5 +9,6 @@ public class MainPanel extends JPanel
     {
         this.setVisible(true);
         this.setBackground(new Color(86, 203, 241));
+
     }
 }

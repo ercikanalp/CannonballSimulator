@@ -17,11 +17,13 @@ public class InitPanel extends JPanel
         button = new JButton("Initialize");
 
         fieldPanel = new JPanel();
-        fieldPanel.setLayout(new GridLayout(1,3));
+        fieldPanel.setLayout(new GridLayout(1,5));
         fields = new ArrayList<>();
         fields.add(new JTextField("Mass"));
         fields.add(new JTextField("Angle"));
         fields.add(new JTextField("Speed"));
+        fields.add(new JTextField("X Location"));
+        fields.add(new JTextField("Y Location"));
         for(JTextField f : fields)
         {
             fieldPanel.add(f);
@@ -31,7 +33,9 @@ public class InitPanel extends JPanel
             int mass = Integer.parseInt(fields.get(0).getText());
             double angle = Double.parseDouble(fields.get(1).getText());
             double speed = Double.parseDouble(fields.get(2).getText());
-            Cannonball cb = new Cannonball(mass, angle, speed);
+            int x = Integer.parseInt(fields.get(3).getText());
+            int y = Integer.parseInt(fields.get(4).getText());
+            Cannonball cb = new Cannonball(x,y,mass, angle, speed);
             new MainFrame(cb);
         });
 

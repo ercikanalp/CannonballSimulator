@@ -13,14 +13,14 @@ public class Cannonball
    private ArrayList<Location> locations;
    private final double G = 9.8;
 
-    public Cannonball(int mass, double angle, double speed)
+    public Cannonball(int x, int y,int mass, double angle, double speed)
     {
         this.mass = mass;
         this.angle = angle;
         this.speed = speed;
         locations = new ArrayList<>();
-        currentLocation = new Location(0,0);
-        locations.add(new Location(0,0));
+        currentLocation = new Location(x,y);
+        locations.add(new Location(x,y));
         speedInX = speed * Math.cos(angle* Math.PI/180);
         speedInY = speed * Math.sin(angle* Math.PI/180);
     }

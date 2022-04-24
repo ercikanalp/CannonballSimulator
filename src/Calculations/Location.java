@@ -32,5 +32,10 @@ public class Location
         this.y = y;
     }
 
+    public String toString()
+    {
+        return "(X,Y): ("+ x + "," + y +")";
+    }
+
 
 }

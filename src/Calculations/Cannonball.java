@@ -20,7 +20,7 @@ public class Cannonball
         this.speed = speed;
         locations = new ArrayList<>();
         currentLocation = new Location(0,0);
-        locations.add(currentLocation);
+        locations.add(new Location(0,0));
         speedInX = speed * Math.cos(angle* Math.PI/180);
         speedInY = speed * Math.sin(angle* Math.PI/180);
     }
@@ -60,14 +60,14 @@ public class Cannonball
         int timeStep = 0;
         while(currentLocation.getY() >= 0)
         {
-            updateSpeed(timeStep);
             timeStep++;
+            updateSpeed(timeStep);
         }
     }
 
     private void updateSpeed(int timeStep)
     {
-        this.speedInX = speedInX;
+
         this.speedInY = speedInY- G*timeStep;
         this.speed = Math.sqrt((speedInX*speedInX) + (speedInY*speedInY));
         updateLocation();
@@ -79,7 +79,17 @@ public class Cannonball
         double y = currentLocation.getY();
         this.currentLocation.setX(x + speedInX);
         this.currentLocation.setY(y + speedInY);
-        locations.add(currentLocation);
+       if(currentLocation.getY()>=0)
+       {
+           locations.add(new Location(x + speedInX,y + speedInY));
+
+       }
+       else
+       {
+           locations.add(new Location(x+speedInX, 0));
+       }
+
+
     }
 
 

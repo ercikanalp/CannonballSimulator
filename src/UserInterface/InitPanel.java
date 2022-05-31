@@ -1,6 +1,8 @@
 package UserInterface;
 
 import Calculations.Cannonball;
+import Calculations.Location;
+import Calculations.Tower;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +18,7 @@ public class InitPanel extends JPanel {
         button = new JButton("Initialize");
 
         fieldPanel = new JPanel();
-        fieldPanel.setLayout(new GridLayout(1, 6));
+        fieldPanel.setLayout(new GridLayout(1, 9));
         fields = new ArrayList<>();
         fields.add(new JTextField("Mass"));
         fields.add(new JTextField("Angle"));
@@ -24,6 +26,9 @@ public class InitPanel extends JPanel {
         fields.add(new JTextField("X Location"));
         fields.add(new JTextField("Y Location"));
         fields.add(new JTextField("Wind"));
+        fields.add(new JTextField("Tower X Coord"));
+        fields.add(new JTextField("Tower Y Coord"));
+        fields.add(new JTextField("Tower Height"));
         for (JTextField f : fields) {
             fieldPanel.add(f);
         }
@@ -36,7 +41,10 @@ public class InitPanel extends JPanel {
             int y = Integer.parseInt(fields.get(4).getText());
             double wind = Double.parseDouble(fields.get(5).getText());
             Cannonball cb = new Cannonball(x, y, mass, angle, speed, wind);
-            new MainFrame(cb);
+            Location towerL = new Location(Double.parseDouble(fields.get(6).getText()),Double.parseDouble(fields.get(7).getText()));
+            double height = Double.parseDouble(fields.get(8).getText());
+            Tower tower = new Tower(towerL, height);
+            new MainFrame(cb, tower);
         });
 
         this.add(fieldPanel, BorderLayout.CENTER);
